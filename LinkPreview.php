@@ -48,7 +48,7 @@
 		return $dom;
 	}
 	
-	error_reporting(0);
+	//error_reporting(0);
 	
 	$urlSource = loadSource(file_get_contents($_GET['link']));
 	
