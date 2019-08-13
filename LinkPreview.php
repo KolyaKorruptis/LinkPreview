@@ -40,8 +40,9 @@
 		return addslashes($firstImage);
 	}
 	
-	function loadSource($url) {
-		$html = file_get_contents($_GET['link']);
+	function loadSource() {
+		$html = filter_var($_GET['link'], FILTER_VALIDATE_URL);
+		$html = file_get_contents($html);
 		$dom = new DOMDocument();
 		$dom->loadHTML($html);
 		$dom->preserveWhiteSpace = false; 
@@ -50,7 +51,7 @@
 	
 	error_reporting(0);
 	
-	$urlSource = loadSource(file_get_contents($_GET['link']));
+	$urlSource = loadSource();
 	
 	/* if you want to support jsonp output, uncomment this block, and remove this line, obviously
 	if($_GET['callback'] != "") {
